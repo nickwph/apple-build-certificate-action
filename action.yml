@@ -24,13 +24,11 @@ runs:
       if: ${{ inputs.certificate-base64 != null }}
       run: echo -n ${{ inputs.certificate-base64 }} | base64 --decode -o $RUNNER_TEMP/certificate.p12
     - shell: bash
-      run: ls -la $RUNNER_TEMP
-    - shell: bash
       run: |
         PASSWORD=$(uuidgen)
         KEYCHAIN_PATH=$RUNNER_TEMP/signing.keychain-db
         security create-keychain -p $PASSWORD $KEYCHAIN_PATH
         security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
         security unlock-keychain -p $PASSWORD $KEYCHAIN_PATH
-        security import $$RUNNER_TEMP/certificate.p12 -P ${{ inputs.p12-password }} -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+        security import $RUNNER_TEMP/certificate.p12 -P ${{ inputs.p12-password }} -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
         security list-keychain -d user -s $KEYCHAIN_PATH

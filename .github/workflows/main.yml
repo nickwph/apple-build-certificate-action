@@ -1,15 +1,54 @@
-name: Main testing workflow
-on: [push, pull_request, workflow_dispatch]
+name: Main
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CERT_1: 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
+  CERT_1_NAME: Apple Build Certificate Action
+  CERT_1_PASSWORD: ejrrz3wJRwTS
+  CERT_2: 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
+  CERT_2_NAME: Apple Build Certificate Action File
+  CERT_2_PASSWORD: 5hrwxapQ4RQX
+
 jobs:
   test:
     runs-on: macos-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Testing
+      - uses: actions/checkout@v3
+      - name: Run nickwph/apple-bulid-certificate-action@v1
         uses: ./
         with:
-          build-certificate-base64: ${{ secrets.IOS_BUILD_CERTIFICATE_P12_BASE64 }}
-          p12-password: ${{ secrets.IOS_BUILD_CERTIFICATE_P12_PASSWORD }}
-          build-provision-profile-base64: ${{ secrets.IOS_BUILD_PROVISION_PROFILE_BASE64 }}
-          keychain-password: ${{ secrets.MAC_MACHINE_KEYCHAIN_PASSWORD }}
+          certificate-base64: ${{ env.CERT_1 }}
+          certificate-password: ${{ env.CERT_1_PASSWORD }}
+      - name: Verify result
+        run: if security find-certificate -c "${{ env.CERT_1_NAME }}"; then exit 0; else exit 1; fi
+  test-file:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create fake profile
+        run: echo -n "${{ env.CERT_2 }}" | base64 --decode -o $RUNNER_TEMP/fake-certificate.p12
+      - name: Run nickwph/apple-bulid-certificate-action@v1
+        uses: ./
+        with:
+          certificate-file: $RUNNER_TEMP/fake-certificate.p12
+          certificate-password: ${{ env.CERT_2_PASSWORD }}
+      - name: Verify result
+        run: if security find-certificate -c "${{ env.CERT_2_NAME }}"; then exit 0; else exit 1; fi
+  test-base64-overrides-file:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create fake profile
+        run: echo -n "${{ env.CERT_2 }}" | base64 --decode -o $RUNNER_TEMP/fake-certificate.p12
+      - name: Run nickwph/apple-bulid-certificate-action@v1
+        uses: ./
+        with:
+          certificate-file: $RUNNER_TEMP/fake-certificate.p12
+          certificate-base64: ${{ env.CERT_1 }}
+          certificate-password: ${{ env.CERT_1_PASSWORD }}
+      - name: Verify result
+        run: if security find-certificate -c "${{ env.CERT_1_NAME }}"; then exit 0; else exit 1; fi

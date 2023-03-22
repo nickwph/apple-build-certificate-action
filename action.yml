@@ -19,9 +19,9 @@ runs:
   steps:
     - shell: bash
       if: ${{ inputs.certificate-file != null }}
-      run: cp ${{ inputs.credentials-file }} $RUNNER_TEMP/certificate.p12
+      run: cp ${{ inputs.certificate-file }} $RUNNER_TEMP/certificate.p12
     - shell: bash
-      if: ${{ inputs.certificate != null }}
+      if: ${{ inputs.certificate-base64 != null }}
       run: echo -n ${{ inputs.certificate-base64 }} | base64 --decode -o $RUNNER_TEMP/certificate.p12
     - shell: bash
       run: |

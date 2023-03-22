@@ -32,6 +32,3 @@ runs:
         security unlock-keychain -p $PASSWORD $KEYCHAIN_PATH
         security import $RUNNER_TEMP/certificate.p12 -P ${{ inputs.certificate-password }} -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
         security list-keychain -d user -s $KEYCHAIN_PATH
-  post:
-    - shell: bash
-      run: security delete-keychain $RUNNER_TEMP/signing.keychain-db

@@ -14,6 +14,9 @@ inputs:
   certificate-password:
     description: The password for the Apple signing certificate
     required: true
+  keychain-password:
+    description: Password for the temporary keychain database, random password will be used if not set
+    required: false
 runs:
   using: "composite"
   steps:
@@ -25,7 +28,7 @@ runs:
       run: echo -n ${{ inputs.certificate-base64 }} | base64 --decode -o $RUNNER_TEMP/certificate.p12
     - shell: bash
       run: |
-        PASSWORD=$(uuidgen)
+        PASSWORD=${{ inputs.certificate-file != null }} && "${{ inputs.certificate-file }}" || $(uuidgen)
         KEYCHAIN_PATH=$RUNNER_TEMP/signing.keychain-db
         security create-keychain -p $PASSWORD $KEYCHAIN_PATH
         security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
